@@ -3,6 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <title>Tibi The Peak Jäger</title>
 
     <style media="screen">
@@ -80,41 +85,27 @@
 </head>
 <body>
 
-<script src="https://unpkg.com/mithril/mithril.js"></script>
+<div class="container">
+    <p>My Peaks</p>
+    <table class="table table-striped" id="table1">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Activity</th>
+            <th>Height</th>
+            <th>Country</th>
+            <th>On</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
 <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-firestore.js"></script>
-
-<script>
-    var root = document.body
-
-    var firebaseConfig = {
-        apiKey: "AIzaSyD6uk6in9FbX3g_IkTovkiqeQEWEVLGpAc",
-        authDomain: "peaks-jager.firebaseapp.com",
-        databaseURL: "https://peaks-jager.firebaseio.com",
-        projectId: "peaks-jager",
-        storageBucket: "peaks-jager.appspot.com",
-        messagingSenderId: "179126751692",
-        appId: "1:179126751692:web:1bedae5af985db5b0b0d69"
-    };
-
-    var app = firebase.initializeApp(firebaseConfig);
-    var database = firebase.firestore();
-
-    database.collection("peaks").get().then((snapshot) => {
-        snapshot.forEach((doc) => {
-            console.log(`${doc.id} => ${doc.data()}`);
-            var name = (doc.data() && doc.data().name) || 'Anonymous';
-            m.render(root, [
-                m("main", [
-                    m("h1", {class: "button"}, name),
-                    m("button", "Sync"),
-                ])
-            ])
-        });
-    });
-
-</script>
+<script src="scripts/load.js"></script>
 
 </body>
 </html>
